@@ -2931,7 +2931,9 @@ async function _cmdStart(ctx: Pick<ExtensionContext, "ui" | "cwd">): Promise<voi
       if (live) {
         _currentModel = live.name ?? live.id ?? undefined;
       } else {
-        const sm = SettingsManager.create(cwd);
+        // The SDK's SettingsManager.create() is synchronous on Pi 0.79 but
+        // returns a Promise on oh-my-pi's legacy shim; await covers both.
+        const sm = await SettingsManager.create(cwd);
         const provider = sm.getDefaultProvider();
         const modelId = sm.getDefaultModel();
         if (modelId) {
