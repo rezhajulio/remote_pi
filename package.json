@@ -1,0 +1,35 @@
+{
+  "name": "remote-pi",
+  "version": "0.7.0",
+  "description": "Mobile remote control and local agent mesh for the Pi coding agent. Root package for git-based installs of the pi-extension.",
+  "private": true,
+  "type": "module",
+  "main": "pi-extension/dist/index.js",
+  "types": "pi-extension/dist/index.d.ts",
+  "bin": {
+    "remote-pi": "pi-extension/dist/index.js",
+    "pi-supervisord": "pi-extension/dist/bin/supervisord.js"
+  },
+  "scripts": {
+    "build": "cd pi-extension && tsc",
+    "typecheck": "cd pi-extension && tsc --noEmit",
+    "prepare": "cd pi-extension && tsc"
+  },
+  "pi": {
+    "extensions": [
+      "./pi-extension/dist"
+    ]
+  },
+  "keywords": [
+    "pi",
+    "pi-extension",
+    "pi-coding-agent",
+    "remote-control",
+    "mobile",
+    "agent-mesh",
+    "agent-network"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
